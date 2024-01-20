@@ -63,7 +63,17 @@ const modifyElement = (element, edit=false) => {
   (currentBalance) + parseInt(parentAmount);
   expenditureValue.innerText = parseInt(currentExpense) - parseInt(parentAmount);
   parentDiv.remove();
-
-
 };
+
+const listCreator = (expenseName, expenseValue) =>
+
+{
+
+  let sublistContent = document.createElement("div");
+  sublistContent.classList.add("sublist-content", "flex-space");
+  list.appendChild(sublistContent);
+  sublistContent.innerHTML = `<p class="product">${expenseName} </p><p class="amount">${expenseValue}</p>`;
+  let editButtons = document.createElement("button");
+  editButtons.classList.add()
+}
 
