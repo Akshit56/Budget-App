@@ -74,6 +74,45 @@ const listCreator = (expenseName, expenseValue) =>
   list.appendChild(sublistContent);
   sublistContent.innerHTML = `<p class="product">${expenseName} </p><p class="amount">${expenseValue}</p>`;
   let editButtons = document.createElement("button");
-  editButtons.classList.add()
-}
+  editButtons.classList.add("fa-solid","fa-pen-to-square","edit");
+  editButtons.style.fontSize = "24px";
+  editButtons.addEventListener("click", () => {
+    modifyElement(editButtons, true);
+  });
+  let deleteButton = document.createElement("button");
+  deleteButton.classList.add("fa-solid","fa-trash-can","delete");
+  deleteButton.style.fontSize = "24px";
+  deleteButton.addEventListener("click", () => {
+    modifyElement(deleteButton);
+  });
+  sublistContent.appendChild(editButtons);
+  sublistContent.appendChild(deleteButton);
+  document.getElementById("list").appendChild(sublistContent);
+};
+
+checkAmountButton.addEventListener("click" ,() => {
+  if(!userAmount.value || !productTitle.value){
+    productCostError.classList.remove("hide");
+    return false;
+  }
+  disableButtons(false);
+  //expense
+  let expenditure = parseInt(userAmount.value);
+  //total expense(existing+new)
+  let sum = parseInt(expenditureValue.innerText)+expenditure;
+  expenditureValue.innerText = sum;
+  //total balance(budget-expense)
+  const totalBalance = tempAmount - sum;
+  balanceValue.innerText = totalBalance;
+  //create list
+  listCreator(productTitle.value,userAmount.value);
+  productTitle.value = "";
+  userAmount.value = "";
+});
+
+
+
+
+
+
 
